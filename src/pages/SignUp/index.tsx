@@ -15,6 +15,7 @@ import { Container, Content, Background } from './styles';
 
 const SignUp: React.FC = () => (
   <Container>
+    <Background />
     <Content>
       <img src={logoImg} alt="logo" />
       <form>
@@ -30,7 +31,6 @@ const SignUp: React.FC = () => (
         Voltar p/ Logon
       </Link>
     </Content>
-    <Background />
   </Container>
 );
 

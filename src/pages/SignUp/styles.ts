@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
 
-import backgroundImg from '../../assets/sign-in-background.png';
+import backgroundImg from '../../assets/sign-up-background.png';
 
 export const Container = styled.div`
   height: 100vh;
@@ -63,7 +63,7 @@ export const Content = styled.section`
   }
 
   > a {
-    color: #ff9000;
+    color: #f4ede8;
     text-decoration: none;
     transition: color 0.2s;
 
@@ -75,7 +75,7 @@ export const Content = styled.section`
     }
 
     &:hover {
-      color: ${shade(0.2, '#ff9000')};
+      color: ${shade(0.2, '#f4ede8')};
     }
   }
 `;
