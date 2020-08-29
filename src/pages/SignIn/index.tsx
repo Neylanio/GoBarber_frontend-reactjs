@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 
@@ -30,6 +30,7 @@ const SignIn: React.FC = () => {
 
   const { signIn } = useAuth();
   const { addToast } = useToast();
+  const history = useHistory();
 
   const handleSubmit = useCallback(async (data: SignInFormData) => {
     try {
@@ -49,6 +50,8 @@ const SignIn: React.FC = () => {
         password: data.password,
       });
 
+      history.push('/dashboard');
+
       addToast({
         type: 'success',
         title: 'Usuário logado',
@@ -66,7 +69,7 @@ const SignIn: React.FC = () => {
         description: 'Ocorreu um erro ao fazer login, verifique as credenciais',
       });
     }
-  }, [signIn, addToast]);
+  }, [signIn, addToast, history]);
 
   return (
     <Container>

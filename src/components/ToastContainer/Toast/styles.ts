@@ -12,7 +12,8 @@ const toastTypeVariations = {
     color: #3172b7;
   `,
   success: css`
-    background: #e6fffa;
+    /* background: #e6fffa; */
+    background: #aaf7a3;
     color: #2e656a;
   `,
   error: css`
