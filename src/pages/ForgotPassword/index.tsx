@@ -1,31 +1,86 @@
-import React, {
-  useEffect, useState, useRef, useCallback,
-} from 'react';
+import React, { useRef, useCallback } from 'react';
+import { Link } from 'react-router-dom';
+
+import { FiLogIn, FiMail } from 'react-icons/fi';
+
+import * as Yup from 'yup';
+
 import { Form } from '@unform/web';
 
+import { FormHandles } from '@unform/core';
+import getValidationErrors from '../../utils/getValidationErros';
+import logoImg from '../../assets/logo.svg';
+import { useToast } from '../../hooks/toast';
+
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+
+import {
+  Container, Content, AnimationContainer, Background,
+} from './styles';
+
+interface ForgotPasswordFormData {
+  email: string;
+}
+
 const ForgotPassword: React.FC = () => {
-  const [email, setEmail] = useState<string | null>('');
-  const [senha, setSenha] = useState<string | null>('');
+  const formRef = useRef<FormHandles>(null);
 
-  const formRef = useRef(null);
+  const { addToast } = useToast();
 
-  useEffect(() => {
-    setEmail(localStorage.getItem('email'));
-    setSenha(localStorage.getItem('senha'));
-  }, [email, senha]);
+  const handleSubmit = useCallback(async (data: ForgotPasswordFormData) => {
+    try {
+      formRef.current?.setErrors({});
 
-  const handleSubmit = useCallback((data: any) => {
-    console.log(data);
-  }, []);
+      const schema = Yup.object().shape({
+        email: Yup.string().required('E-mail obrigatório').email('Digite um e-mail válido'),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      // Recuperacao de senha
+
+      // history.push('/dashboard');
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(error);
+        formRef.current?.setErrors(errors);
+
+        return;
+      }
+      addToast({
+        type: 'error',
+        title: 'Erro na recuperação de senha',
+        description: 'Ocorreu um erro ao tentar realizar a recuperação de senha, tente novamente',
+      });
+    }
+  }, [addToast]);
 
   return (
-    <>
-      <Form ref={formRef} onSubmit={handleSubmit}>
-        <h1>Recuperar senha</h1>
-        <input type="text" placeholder="Digite o email" />
-        <button type="submit">Confirmar</button>
-      </Form>
-    </>
+    <Container>
+      <Content>
+        <AnimationContainer>
+          <img src={logoImg} alt="logo" />
+
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <h1>Recuperar senha</h1>
+
+            <Input name="email" icon={FiMail} placeholder="E-mail" autoFocus />
+
+            <Button type="submit">Recuperar</Button>
+          </Form>
+
+          <Link to="/">
+            <FiLogIn size={20} />
+            Voltar ao login
+          </Link>
+        </AnimationContainer>
+      </Content>
+
+      <Background />
+    </Container>
   );
 };
 
