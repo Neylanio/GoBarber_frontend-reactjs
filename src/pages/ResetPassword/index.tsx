@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { FiLock } from 'react-icons/fi';
 
@@ -18,6 +18,7 @@ import Button from '../../components/Button';
 import {
   Container, Content, AnimationContainer, Background,
 } from './styles';
+import api from '../../services/api';
 
 interface ResetPasswordFormData {
   password: string;
@@ -29,6 +30,8 @@ const ResetPassword: React.FC = () => {
 
   const { addToast } = useToast();
   const history = useHistory();
+
+  const location = useLocation();
 
   const handleSubmit = useCallback(async (data: ResetPasswordFormData) => {
     try {
@@ -42,6 +45,23 @@ const ResetPassword: React.FC = () => {
 
       await schema.validate(data, {
         abortEarly: false,
+      });
+
+      const token = location.search.replace('?token=', '');
+
+      if (!token) {
+        throw new Error();
+      }
+
+      await api.post('/password/reset', {
+        password: data.password,
+        password_confirmation: data.password_confirmation,
+        token,
+      });
+
+      addToast({
+        type: 'success',
+        title: 'Alterações salvas com sucesso',
       });
 
       history.push('/');
@@ -58,7 +78,7 @@ const ResetPassword: React.FC = () => {
         description: 'Ocorreu um erro ao resetar sua senha, tente novamente',
       });
     }
-  }, [addToast, history]);
+  }, [addToast, history, location.search]);
 
   return (
     <Container>
