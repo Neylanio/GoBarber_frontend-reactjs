@@ -1,14 +1,16 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { FiClock, FiPower } from 'react-icons/fi';
 import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
 
 import logoImg from '../../assets/logo.svg';
 import {
-  Container, Header, HeaderContent, Profile, Content, Schedule, Calendar, NextAppointment,
+  Container, Header, HeaderContent, Profile, Content, Schedule, Calendar, NextAppointment, Section, Appointment,
 } from './styles';
 
 const Dashboard: React.FC = () => {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   const { signOut, user } = useAuth();
   const { addToast } = useToast();
 
@@ -61,6 +63,78 @@ const Dashboard: React.FC = () => {
               </span>
             </div>
           </NextAppointment>
+
+          <Section>
+            <strong>Manhã</strong>
+            <Appointment>
+              <span>
+                <FiClock />
+                09:00
+              </span>
+
+              <div>
+                <img src="https://avatars3.githubusercontent.com/u/15330671?s=460&u=730bfbe3586f4441fc22f780d2e49b7b4c12ae4e&v=4" alt="" />
+                <strong>Neylanio Soares</strong>
+              </div>
+
+            </Appointment>
+
+            <Appointment>
+              <span>
+                <FiClock />
+                10:00
+              </span>
+
+              <div>
+                <img src="https://avatars3.githubusercontent.com/u/15330671?s=460&u=730bfbe3586f4441fc22f780d2e49b7b4c12ae4e&v=4" alt="" />
+                <strong>Neylanio Soares</strong>
+              </div>
+
+            </Appointment>
+          </Section>
+
+          <Section>
+            <strong>Tarde</strong>
+            <Appointment>
+              <span>
+                <FiClock />
+                14:00
+              </span>
+
+              <div>
+                <img src="https://avatars3.githubusercontent.com/u/15330671?s=460&u=730bfbe3586f4441fc22f780d2e49b7b4c12ae4e&v=4" alt="" />
+                <strong>Neylanio Soares</strong>
+              </div>
+
+            </Appointment>
+
+            <Appointment>
+              <span>
+                <FiClock />
+                15:00
+              </span>
+
+              <div>
+                <img src="https://avatars3.githubusercontent.com/u/15330671?s=460&u=730bfbe3586f4441fc22f780d2e49b7b4c12ae4e&v=4" alt="" />
+                <strong>Neylanio Soares</strong>
+              </div>
+
+            </Appointment>
+
+            <Appointment>
+              <span>
+                <FiClock />
+                14:00
+              </span>
+
+              <div>
+                <img src="https://avatars3.githubusercontent.com/u/15330671?s=460&u=730bfbe3586f4441fc22f780d2e49b7b4c12ae4e&v=4" alt="" />
+                <strong>Neylanio Soares</strong>
+              </div>
+
+            </Appointment>
+
+          </Section>
 
         </Schedule>
         <Calendar />
