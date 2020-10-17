@@ -6,6 +6,8 @@
     "extends": [
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
+        "prettier/@typescript-eslint",
+        "plugin:prettier/recommended",
         "airbnb"
     ],
     "globals": {
@@ -23,6 +25,7 @@
     "plugins": [
         "react",
         "react-hooks",
+        "prettier",
         "@typescript-eslint"
     ],
     "rules": {
@@ -30,6 +33,9 @@
       "react/prop-types": "off",
       "react-hooks/rules-of-hooks": "error",
       "camelcase": "off",
+      "object-curly-newline":"off",
+      // "implicit-arrow-linebreak": "off",
+      "prettier/prettier": "off",
       "no-unused-expressions": "off",
       "@typescript-eslint/ban-types": "off",
       "import/no-duplicates": "off",
