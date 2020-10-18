@@ -34,7 +34,7 @@
       "react-hooks/rules-of-hooks": "error",
       "camelcase": "off",
       "object-curly-newline":"off",
-      // "implicit-arrow-linebreak": "off",
+      "linebreak-style": "error",
       "prettier/prettier": "off",
       "no-unused-expressions": "off",
       "@typescript-eslint/ban-types": "off",

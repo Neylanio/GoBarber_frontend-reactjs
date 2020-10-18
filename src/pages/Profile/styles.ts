@@ -23,11 +23,8 @@ export const Container = styled.div`
         width: 24px;
         height: 24px;
       }
-
     }
-
   }
-
 `;
 
 export const Content = styled.section`
@@ -49,7 +46,7 @@ export const Content = styled.section`
     h1 {
       margin-bottom: 24px;
       font-size: 20px;
-      text-align: left;
+      margin-right: auto;
     }
 
     a {
@@ -63,9 +60,7 @@ export const Content = styled.section`
         color: ${shade(0.2, '#f4ede8')};
       }
     }
-
   }
-
 `;
 
 export const AvatarInput = styled.div`
@@ -79,7 +74,7 @@ export const AvatarInput = styled.div`
     border-radius: 50%;
   }
 
-  button {
+  label {
     position: absolute;
     width: 48px;
     height: 48px;
@@ -94,6 +89,12 @@ export const AvatarInput = styled.div`
     align-items: center;
     justify-content: center;
 
+    cursor: pointer;
+
+    input {
+      display: none;
+    }
+
     svg {
       width: 20px;
       height: 20px;
@@ -103,6 +104,5 @@ export const AvatarInput = styled.div`
     &:hover {
       background: ${shade(0.2, '#ff9000')}
     }
-
   }
 `;
