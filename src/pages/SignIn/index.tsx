@@ -51,11 +51,6 @@ const SignIn: React.FC = () => {
       });
 
       history.push('/dashboard');
-
-      addToast({
-        type: 'success',
-        title: 'Usuário logado',
-      });
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const errors = getValidationErrors(error);
